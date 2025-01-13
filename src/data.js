@@ -2,21 +2,21 @@ let data = [
     {
     id : 0,
     title : "Nike Airforce",
-    content : "Born in USA",
+    content : "New York",
     price : 139000
     },
     
     {
     id : 1,
     title : "Converse",
-    content : "Born in USA",
+    content : "London",
     price : 69000
     },
     
     {
     id : 2,
     title : "Nike with G-Dragon",
-    content : "Born in Seoul",
+    content : "Seoul",
     price : 999999
     }
 ];

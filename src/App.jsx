@@ -3,7 +3,8 @@ import { Button, Navbar, Container, Nav, Row, Col } from 'react-bootstrap'
 import './App.css'
 import data from './data.js'
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
-import Detail from './Detail.jsx'
+import Detail from './routes/Detail.jsx'
+import Cart from './routes/Cart.jsx'
 
 function App() {
   let [shoes, setShoes] = useState(data);
@@ -33,7 +34,7 @@ function App() {
                   {shoes.map(function(s, i){
                     return(
                       <>
-                        <Shu shoes={shoes} id={shoes[i].id} i={i} navigate={navigate}></Shu>
+                        <Shu shoes={shoes} id={shoes[i].id} i={i} navigate={navigate} key={i}></Shu>
                       </>
                     )
                   })}                        
@@ -47,16 +48,15 @@ function App() {
             }>
         </Route>
         <Route path='/detail/:id' element={ <Detail shoes={shoes}></Detail>} />
+        
+        <Route path='/cart' element={<Cart></Cart>} />
+        
         <Route path='*' element={ <h1 style={{color:'red'}}> 404 없는 페이지입니다 </h1> }></Route>
         <Route path='/about' element={ <About></About> }>
           <Route path='one' element={ <h7>첫 주문시 20% 할인</h7>} ></Route>
           <Route path='two' element={ <h7>생일 쿠폰 발행</h7>} ></Route>
         </Route>
       </Routes>
-
-      {/* <Link to='/'>Home</Link> <br />
-      <Link to='/detail'>Detail</Link> <br />
-      <Link to='/about'>About</Link> */}
 
     </div>
   )
@@ -65,7 +65,7 @@ function App() {
 function Shu(props){
   return(
     <Col sm={4} onClick={()=>{props.navigate('/detail/'+props.id)}}>
-      <img src={import.meta.env.BASE_URL + 'shoes' + props.id + '.jpg'} width="500px" height="500px"/>
+      <img src={import.meta.env.BASE_URL + 'shoes' + props.id + '.jpg'} width='80%' height='80%'/>
       <h4>{props.shoes[props.i].title}</h4>
       <p>{props.shoes[props.i].content}</p>
       <p>{props.shoes[props.i].price}원</p>
